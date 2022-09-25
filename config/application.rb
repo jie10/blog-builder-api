@@ -26,5 +26,8 @@ module BlogBuilder
 				ENV[key.to_s] = value
 			end if File.exists?(env_file)
 		end
+
+		# Set the app to be api only
+		config.api_only = true
 	end
 end
