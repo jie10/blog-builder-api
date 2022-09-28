@@ -28,7 +28,7 @@
       <div class="mx-auto w-full max-w-sm lg:w-96">
         <div>
           <img alt="Your Company" class="h-12 w-auto"
-               src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"/>
+               src="https://wallpapercave.com/wp/wp6276782.png"/>
           <h2 class="mt-6 text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
           <!--          <p class="mt-2 text-sm text-gray-600">
                       Or
@@ -140,7 +140,7 @@
     <div class="relative hidden w-0 flex-1 lg:block">
       <img alt=""
            class="absolute inset-0 h-full w-full object-cover"
-           src="https://images.unsplash.com/photo-1505904267569-f02eaeb45a4c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1908&q=80"/>
+           src="https://wallpapercave.com/wp/wp6276761.jpg"/>
     </div>
   </div>
 </template>
