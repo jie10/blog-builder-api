@@ -4,7 +4,7 @@ import HomeView from '../views/Home.vue'
 import AboutView from '../views/About.vue'
 import GettingStarted from '../views/Getting-Started/index.vue'
 import Login from '../views/Auth/Login.vue'
-
+import Dashboard from '../views/Dashboard/dashboard.vue'
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -35,6 +35,11 @@ const router = createRouter({
       name: 'auth',
       component: Login,
     },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
+    }
   ],
 })
 export default router
