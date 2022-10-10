@@ -1,9 +1,9 @@
 import React from "react"
 
-function Client(props) {
+function Footer(props) {
   return (
     <div></div>
   )
 }
 
-export default Client
+export default Footer
