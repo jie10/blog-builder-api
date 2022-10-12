@@ -1,47 +1,44 @@
-import { Fragment, useState } from "react"
-import { Dialog, Menu, Transition } from "@headlessui/react"
+import { Fragment, useState } from 'react'
+import { Dialog, Menu, Transition } from '@headlessui/react'
 import {
   Bars3BottomLeftIcon,
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
   FolderIcon,
   HomeIcon,
-  InboxIcon,
   UsersIcon,
   XMarkIcon,
-} from "@heroicons/react/24/outline"
-import { MagnifyingGlassIcon } from "@heroicons/react/20/solid"
+  UserIcon,
+} from '@heroicons/react/24/solid'
+import { MagnifyingGlassIcon } from '@heroicons/react/20/solid'
+import { Link, NavLink, Outlet } from 'react-router-dom'
 
 const navigation = [
 
 
-  {name: "Dashboard", href: "#", icon: HomeIcon, current: true},
-  {name: "Team", href: "#", icon: UsersIcon, current: false},
-  {name: "Projects", href: "#", icon: FolderIcon, current: false},
-  {name: "Calendar", href: "#", icon: CalendarIcon, current: false},
-  {name: "Documents", href: "#", icon: InboxIcon, current: false},
-  {name: "Reports", href: "#", icon: ChartBarIcon, current: false},
+  {name: 'Dashboard', href: '/', icon: HomeIcon, current: true},
+  {name: 'Titles', href: 'titles', icon: UsersIcon, current: false},
+  {name: 'Blogs', href: 'blogs', icon: FolderIcon, current: false},
+  {name: 'Profile', href: 'profile', icon: UserIcon, current: false},
 ]
 const userNavigation = [
-  {name: "Your Profile", href: "#"},
-  {name: "Settings", href: "#"},
-  {name: "Sign out", href: "#"},
+  {name: 'Your Profile', href: '#'},
+  {name: 'Settings', href: '#'},
+  {name: 'Sign out', href: '#'},
 ]
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(" ")
+  return classes.filter(Boolean).join(' ')
 }
 
 function Backend() {
-  const [sidebarOpen, setSidebarOpen] = useState(false)
+  const [ sidebarOpen, setSidebarOpen ] = useState(false)
   return (
     <>
       <div>
-        <Transition.Root show={sidebarOpen} as={Fragment}>
-          <Dialog as="div" className="relative z-40 md:hidden" onClose={setSidebarOpen}>
+        <Transition.Root show={ sidebarOpen } as={ Fragment }>
+          <Dialog as="div" className="relative z-40 md:hidden" onClose={ setSidebarOpen }>
             <Transition.Child
-              as={Fragment}
+              as={ Fragment }
               enter="transition-opacity ease-linear duration-300"
               enterFrom="opacity-0"
               enterTo="opacity-100"
@@ -54,7 +51,7 @@ function Backend() {
 
             <div className="fixed inset-0 z-40 flex">
               <Transition.Child
-                as={Fragment}
+                as={ Fragment }
                 enter="transition ease-in-out duration-300 transform"
                 enterFrom="-translate-x-full"
                 enterTo="translate-x-0"
@@ -64,7 +61,7 @@ function Backend() {
               >
                 <Dialog.Panel className="relative flex w-full max-w-xs flex-1 flex-col bg-white pt-5 pb-4">
                   <Transition.Child
-                    as={Fragment}
+                    as={ Fragment }
                     enter="ease-in-out duration-300"
                     enterFrom="opacity-0"
                     enterTo="opacity-100"
@@ -76,7 +73,7 @@ function Backend() {
                       <button
                         type="button"
                         className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                        onClick={() => setSidebarOpen(false)}
+                        onClick={ () => setSidebarOpen(false) }
                       >
                         <span className="sr-only">Close sidebar</span>
                         <XMarkIcon className="h-6 w-6 text-white" aria-hidden="true"/>
@@ -92,41 +89,41 @@ function Backend() {
                   </div>
                   <div className="mt-5 h-0 flex-1 overflow-y-auto">
                     <nav className="space-y-1 px-2">
-                      {navigation.map((item) => (
-                        <a
-                          key={item.name}
-                          href={item.href}
-                          className={classNames(
+                      { navigation.map((item) => (
+                        <NavLink
+                          key={ item.name }
+                          to={ item.href }
+                          className={ classNames(
                             item.current
-                              ? "bg-gray-100 text-gray-900"
-                              : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
-                            "group rounded-md py-2 px-2 flex items-center text-base font-medium",
-                          )}
+                              ? 'bg-gray-100 text-gray-900'
+                              : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                            'group rounded-md py-2 px-2 flex items-center text-base font-medium',
+                          ) }
                         >
                           <item.icon
-                            className={classNames(
-                              item.current ? "text-gray-500" : "text-gray-400 group-hover:text-gray-500",
-                              "mr-4 flex-shrink-0 h-6 w-6",
-                            )}
+                            className={ classNames(
+                              item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                              'mr-4 flex-shrink-0 h-6 w-6',
+                            ) }
                             aria-hidden="true"
                           />
-                          {item.name}
-                        </a>
-                      ))}
+                          { item.name }
+                        </NavLink>
+                      )) }
                     </nav>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>
               <div className="w-14 flex-shrink-0">
-                {/* Dummy element to force sidebar to shrink to fit close icon */}
+                {/* Dummy element to force sidebar to shrink to fit close icon */ }
               </div>
             </div>
           </Dialog>
         </Transition.Root>
 
-        {/* Static sidebar for desktop */}
+        {/* Static sidebar for desktop */ }
         <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-          {/* Sidebar component, swap this element with another sidebar if you like */}
+          {/* Sidebar component, swap this element with another sidebar if you like */ }
           <div className="flex flex-grow flex-col overflow-y-auto border-r border-gray-200 bg-white pt-5">
             <div className="flex flex-shrink-0 items-center px-4">
               <img
@@ -137,25 +134,25 @@ function Backend() {
             </div>
             <div className="mt-5 flex flex-grow flex-col">
               <nav className="flex-1 space-y-1 px-2 pb-4">
-                {navigation.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    className={classNames(
-                      item.current ? "bg-gray-100 text-gray-900" : "text-gray-600 hover:bg-gray-50 hover:text-gray-900",
-                      "group rounded-md py-2 px-2 flex items-center text-sm font-medium",
-                    )}
+                { navigation.map((item) => (
+                  <NavLink
+                    key={ item.name }
+                    to={ item.href }
+                    className={ classNames(
+                      item.current ? 'bg-gray-100 text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
+                      'group rounded-md py-2 px-2 flex items-center text-sm font-medium',
+                    ) }
                   >
                     <item.icon
-                      className={classNames(
-                        item.current ? "text-gray-500" : "text-gray-400 group-hover:text-gray-500",
-                        "mr-3 flex-shrink-0 h-6 w-6",
-                      )}
+                      className={ classNames(
+                        item.current ? 'text-gray-500' : 'text-gray-400 group-hover:text-gray-500',
+                        'mr-3 flex-shrink-0 h-6 w-6',
+                      ) }
                       aria-hidden="true"
                     />
-                    {item.name}
-                  </a>
-                ))}
+                    { item.name }
+                  </NavLink>
+                )) }
               </nav>
             </div>
           </div>
@@ -167,7 +164,7 @@ function Backend() {
               <button
                 type="button"
                 className="border-r border-gray-200 px-4 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden"
-                onClick={() => setSidebarOpen(true)}
+                onClick={ () => setSidebarOpen(true) }
               >
                 <span className="sr-only">Open sidebar</span>
                 <Bars3BottomLeftIcon className="h-6 w-6" aria-hidden="true"/>
@@ -201,7 +198,7 @@ function Backend() {
                     <BellIcon className="h-6 w-6" aria-hidden="true"/>
                   </button>
 
-                  {/* Profile dropdown */}
+                  {/* Profile dropdown */ }
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="flex max-w-xs items-center rounded-full text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
@@ -214,7 +211,7 @@ function Backend() {
                       </Menu.Button>
                     </div>
                     <Transition
-                      as={Fragment}
+                      as={ Fragment }
                       enter="transition ease-out duration-100"
                       enterFrom="transform opacity-0 scale-95"
                       enterTo="transform opacity-100 scale-100"
@@ -223,21 +220,21 @@ function Backend() {
                       leaveTo="transform opacity-0 scale-95"
                     >
                       <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-                        {userNavigation.map((item) => (
-                          <Menu.Item key={item.name}>
-                            {({active}) => (
-                              <a
-                                href={item.href}
-                                className={classNames(
-                                  active ? "bg-gray-100" : "",
-                                  "block py-2 px-4 text-sm text-gray-700",
-                                )}
+                        { userNavigation.map((item) => (
+                          <Menu.Item key={ item.name }>
+                            { ({active}) => (
+                              <Link
+                                to={ item.href }
+                                className={ classNames(
+                                  active ? 'bg-gray-100' : '',
+                                  'block py-2 px-4 text-sm text-gray-700',
+                                ) }
                               >
-                                {item.name}
-                              </a>
-                            )}
+                                { item.name }
+                              </Link>
+                            ) }
                           </Menu.Item>
-                        ))}
+                        )) }
                       </Menu.Items>
                     </Transition>
                   </Menu>
@@ -251,17 +248,18 @@ function Backend() {
                   <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
                 </div>
                 <div className="px-4 sm:px-6 md:px-0">
-                  {/* Replace with your content */}
+                  {/* Replace with your content */ }
                   <div className="py-4">
-                    <div className="h-96 rounded-lg border-4 border-dashed border-gray-200"/>
+                    <Outlet/>
                   </div>
-                  {/* /End replace */}
+                  {/* /End replace */ }
                 </div>
               </div>
             </main>
           </div>
         </div>
       </div>
+
     </>
   )
 }
